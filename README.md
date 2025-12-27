@@ -62,7 +62,7 @@ The project uses different sorting strategies based on the input size:
 - **2 elements**: Simple swap if needed
 - **3 elements**: Optimized hardcoded solution
 - **4-5 elements**: Push minimum elements to stack b, sort remaining 3
-- **6+ elements**: Radix sort using binary representation of indices
+- **6+ elements**: Chunk-based sorting algorithm that divides the stack into chunks, pushes elements to stack b in chunk order, then pushes back in sorted order
 
 ## Error Handling
 
@@ -73,10 +73,10 @@ The program displays "Error" on stderr for:
 
 ## Performance
 
-| Input Size | Operations |
-|------------|------------|
-| 100 numbers | ~1100 |
-| 500 numbers | ~6800 |
+| Input Size | Operations | Target (100%) |
+|------------|------------|---------------|
+| 100 numbers | ~585 | <700 |
+| 500 numbers | ~5277 | <5500 |
 
 ## Bonus: Checker
 
@@ -90,7 +90,7 @@ The checker program reads operations from stdin and verifies if they correctly s
 ## Files
 
 - `push_swap.c` - Main program and sorting algorithm
-- `checker.c` - Bonus checker program
+- `checker_bonus.c` - Bonus checker program
 - `parsing.c` - Argument parsing and validation
 - `utils.c` - Utility functions
 - `stack_op.c` - Stack operations

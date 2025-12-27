@@ -181,7 +181,6 @@ static int	find_max_idx_pos(t_stack_node *stack)
 static void	push_chunks_to_b(t_stack_node **a, t_stack_node **b, int size)
 {
 	int	chunk_size;
-	int	pushed;
 	int	i;
 	int	chunk_num;
 
@@ -190,7 +189,6 @@ static void	push_chunks_to_b(t_stack_node **a, t_stack_node **b, int size)
 	else
 		chunk_num = 11;
 	chunk_size = size / chunk_num;
-	pushed = 0;
 	i = 0;
 	while (*a)
 	{
@@ -198,13 +196,11 @@ static void	push_chunks_to_b(t_stack_node **a, t_stack_node **b, int size)
 		{
 			push_b(a, b);
 			rotate_b(b);
-			pushed++;
 			i++;
 		}
 		else if ((*a)->index <= i + chunk_size)
 		{
 			push_b(a, b);
-			pushed++;
 			i++;
 		}
 		else
@@ -216,6 +212,7 @@ static void	push_back_to_a(t_stack_node **a, t_stack_node **b)
 {
 	int	size;
 	int	max_pos;
+	int	rotations;
 
 	while (*b)
 	{
@@ -223,12 +220,14 @@ static void	push_back_to_a(t_stack_node **a, t_stack_node **b)
 		max_pos = find_max_idx_pos(*b);
 		if (max_pos <= size / 2)
 		{
-			while (max_pos-- > 0)
+			rotations = max_pos;
+			while (rotations-- > 0)
 				rotate_b(b);
 		}
 		else
 		{
-			while (max_pos++ < size)
+			rotations = size - max_pos;
+			while (rotations-- > 0)
 				rev_rotate_b(b);
 		}
 		push_a(a, b);
