@@ -12,12 +12,16 @@
 
 #include "push_swap.h"
 
-void	push_from_to(t_stack_node **first, t_stack_node **second)
+void	push_from_to(t_stack_node **from, t_stack_node **to)
 {
-	t_stack_node	temp;
+	t_stack_node	*node;
 
-	temp = pop(first);
-	add_to_stack(second, temp);
+	if (!from || !*from)
+		return ;
+	node = *from;
+	*from = (*from)->next;
+	node->next = *to;
+	*to = node;
 }
 
 void	push_a(t_stack_node **a, t_stack_node **b)
