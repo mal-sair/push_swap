@@ -136,20 +136,20 @@ static void	assign_indices(t_stack_node *stack)
 {
 	t_stack_node	*current;
 	t_stack_node	*compare;
-	int				index;
+	int				idx;
 
 	current = stack;
 	while (current)
 	{
-		index = 0;
+		idx = 0;
 		compare = stack;
 		while (compare)
 		{
 			if (compare->data < current->data)
-				index++;
+				idx++;
 			compare = compare->next;
 		}
-		current->prev = (t_stack_node *)(long)index;
+		current->index = idx;
 		current = current->next;
 	}
 }
@@ -172,7 +172,7 @@ static void	radix_sort(t_stack_node **a, t_stack_node **b)
 		j = 0;
 		while (j < size)
 		{
-			if (((long)((*a)->prev) >> i) & 1)
+			if (((*a)->index >> i) & 1)
 				rotate_a(a);
 			else
 				push_b(a, b);

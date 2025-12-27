@@ -47,9 +47,10 @@ static void	add_to_tail(t_stack_node **head, t_stack_node *new_node)
 
 static t_stack_node	*parse_single_arg(char *arg, t_stack_node **a)
 {
-	char	**split;
-	long	num;
-	int		i;
+	char			**split;
+	long			num;
+	int				i;
+	t_stack_node	*node;
 
 	split = ft_split(arg, ' ');
 	if (!split || !split[0])
@@ -71,7 +72,14 @@ static t_stack_node	*parse_single_arg(char *arg, t_stack_node **a)
 			free_split(split);
 			return (NULL);
 		}
-		add_to_tail(a, create_node((int)num));
+		node = create_node((int)num);
+		if (!node)
+		{
+			free_split(split);
+			free_stack(a);
+			return (NULL);
+		}
+		add_to_tail(a, node);
 		i++;
 	}
 	free_split(split);
@@ -81,6 +89,7 @@ static t_stack_node	*parse_single_arg(char *arg, t_stack_node **a)
 t_stack_node	*parse_args(int argc, char **argv)
 {
 	t_stack_node	*a;
+	t_stack_node	*node;
 	long			num;
 	int				i;
 
@@ -101,7 +110,13 @@ t_stack_node	*parse_args(int argc, char **argv)
 			free_stack(&a);
 			return (NULL);
 		}
-		add_to_tail(&a, create_node((int)num));
+		node = create_node((int)num);
+		if (!node)
+		{
+			free_stack(&a);
+			return (NULL);
+		}
+		add_to_tail(&a, node);
 		i++;
 	}
 	return (a);
