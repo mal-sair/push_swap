@@ -7,6 +7,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRC = push_swap.c \
       utils.c \
       parsing.c \
+      stack_op.c \
       operations_swap.c \
       operations_push.c \
       operations_rotate.c \
@@ -17,6 +18,7 @@ OBJ = $(SRC:.c=.o)
 BONUS_SRC = checker.c \
             utils.c \
             parsing.c \
+            stack_op.c \
             operations_swap.c \
             operations_push.c \
             operations_rotate.c \

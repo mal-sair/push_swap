@@ -19,8 +19,10 @@ void	rev_rotate(t_stack_node **head)
 
 	if (!head || !*head || !(*head)->next)
 		return ;
-	last = last_node(*head);
-	second_last = last->prev;
+	second_last = *head;
+	while (second_last->next && second_last->next->next)
+		second_last = second_last->next;
+	last = second_last->next;
 	second_last->next = NULL;
 	last->next = *head;
 	*head = last;

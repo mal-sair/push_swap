@@ -1,0 +1,15 @@
+# Compiled object files
+*.o
+
+# Compiled binaries
+push_swap
+checker
+
+# Editor files
+*.swp
+*~
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
