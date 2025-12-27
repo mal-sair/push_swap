@@ -15,7 +15,7 @@ SRC = push_swap.c \
 
 OBJ = $(SRC:.c=.o)
 
-BONUS_SRC = checker.c \
+BONUS_SRC = checker_bonus.c \
             utils.c \
             parsing.c \
             stack_op.c \
